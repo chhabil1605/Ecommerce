@@ -1,0 +1,37 @@
+//service-registry
+Spring Cloud Config
+Spring Cloud Netflix Eureka Server
+Spring Boot DevTools
+
+//config-server
+Spring Cloud Config Server
+
+//user-service
+Spring Data JPA
+Validation
+Spring Web
+Cloud
+Spring Cloud Netflix Eureka Client
+OpenFeign
+DevTools
+MySQL Connector
+Lombok
+
+->manually added
+ModelMapper (maven site)
+jjwt-impl
+jjwt-api
+jjwt-jackson (all 3 maven site)
+
+
+//api-gateway
+Cloud Config
+Gateway(Cloud Routing)
+Eureka Client
+DevTools
+
+->
+jjwt-impl
+jjwt-api
+jjwt-jackson (all 3 maven site)
+reactor-test

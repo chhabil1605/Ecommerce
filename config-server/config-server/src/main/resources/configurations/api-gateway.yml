@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: 'http://localhost:3000'
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
+              - TRACE
+            maxAge: 3600
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+          filters:
+            - AuthenticationFilter
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/product/**
+#        - id: order-service
+#          uri: lb://order-service
+#          predicates:
+#            - Path=/order/**
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+
+server:
+  port: 9095
+
+SECRET: c36ac04b56bf4a7186952542911e2f2ce49934053fb1551f
