@@ -14,6 +14,30 @@ public class ProductImage {
     private byte[] imageData;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
-    public String addProduct(AddProduct addProduct, List<MultipartFile> files) throws IOException;
+    String addProduct(AddProduct addProduct, List<MultipartFile> files) throws IOException;
 
     List<ProductImage> getProductImages(Long productId);
 }
