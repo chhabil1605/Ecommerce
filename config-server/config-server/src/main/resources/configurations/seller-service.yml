@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: seller-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/seller_service?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&jdbcCompliantTruncation=false
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+
+server:
+  port: 9097
