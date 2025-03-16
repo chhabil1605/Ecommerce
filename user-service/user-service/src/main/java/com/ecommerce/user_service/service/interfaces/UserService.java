@@ -14,5 +14,7 @@ public interface UserService {
 
     ApiResponse addAddress(AddressRequest addressRequest,Long userId);
 
+    String getAddress(Long userId);
+
 //    ApiResponse updateAddress(AddressRequest addressRequest,Long userId,Long addressId);
 }

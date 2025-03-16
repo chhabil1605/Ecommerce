@@ -6,7 +6,6 @@ import com.ecommerce.product_service.Repository.ProductImageRepository;
 import com.ecommerce.product_service.Repository.ProductRepository;
 import com.ecommerce.product_service.Repository.SubCategoryRepository;
 import com.ecommerce.product_service.Request.AddProduct;
-import com.ecommerce.product_service.Response.ProductSavedResponse;
 import com.ecommerce.product_service.Service.Interface.ProductService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -82,7 +82,8 @@ public class ProductServiceImpl implements ProductService {
 
             List<ProductImage> productImages=new ArrayList<>();
             for (MultipartFile file : files) {
-                byte[] imageData = file.getBytes();                ProductImage productImage = new ProductImage();
+                byte[] imageData = file.getBytes();
+                ProductImage productImage = new ProductImage();
                 productImage.setImageData(imageData);
                 productImage.setProduct(product);
                 productImages.add(productImage);
@@ -104,4 +105,30 @@ public class ProductServiceImpl implements ProductService {
         }
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean isProductExist(Long productId) {
+        return productRepository.existsById(productId);
+    }
+
+    @Override
+    public List<Product> getProducts(List<Long> productIds) {
+        return productIds.stream()
+                .map(productRepository::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public Long productRemaining(Long productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent()) {
+            return Long.valueOf(product.get().getInStock().getQuantity());
+        }
+        return 0L;
+    }
+
+
 }

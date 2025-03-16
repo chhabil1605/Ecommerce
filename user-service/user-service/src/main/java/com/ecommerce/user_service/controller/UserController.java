@@ -30,4 +30,9 @@ public class UserController {
     public ApiResponse addAddress(@RequestBody AddressRequest addressRequest, @PathVariable Long userId) {
         return userService.addAddress(addressRequest,userId);
     }
+
+    @PostMapping("/getAddress/{userId}")
+    public String getAddress(@PathVariable Long userId) {
+        return userService.getAddress(userId);
+    }
 }

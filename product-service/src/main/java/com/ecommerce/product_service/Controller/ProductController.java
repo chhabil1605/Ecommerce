@@ -1,5 +1,6 @@
 package com.ecommerce.product_service.Controller;
 
+import com.ecommerce.product_service.Entity.Product;
 import com.ecommerce.product_service.Entity.ProductImage;
 import com.ecommerce.product_service.Request.AddProduct;
 import com.ecommerce.product_service.Service.Interface.ProductService;
@@ -30,4 +31,25 @@ public class ProductController {
         return ResponseEntity.ok(productImages);
     }
 
+
+    @GetMapping("/isProductExist/{productId}")
+    public boolean isProductExist(@PathVariable Long productId) {
+        return productService.isProductExist(productId);
+    }
+
+    @GetMapping("/getFavouriteProducts/{productId}")
+    public List<Product> getFavouriteProducts(List<Long> productIds)
+    {
+        return productService.getProducts(productIds);
+    }
+
+    @PostMapping("/getProductById/{productId}")
+    public Product getProductById(@PathVariable Long productId) {
+        return productService.getProducts(List.of(productId)).get(0);
+    }
+
+    @PostMapping("/productRemaining/{productId}")
+    public Long productRemaining(@PathVariable Long productId) {
+        return productService.productRemaining(productId);
+    }
 }

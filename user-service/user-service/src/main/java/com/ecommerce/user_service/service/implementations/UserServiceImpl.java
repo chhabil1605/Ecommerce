@@ -98,6 +98,17 @@ public class UserServiceImpl implements UserService {
         return new ApiResponse("Address added successfully");
     }
 
+    @Override
+    public String getAddress(Long userId) {
+        User user=userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFound("User not found.. Please SignUp first"));
+        Address address=user.getAddress();
+        if(address!=null){
+            return address.toString();
+        }
+        return "Address not found";
+    }
+
 //    @Override
 //    public ApiResponse updateAddress(AddressRequest addressRequest, Long userId,Long addressId) {
 //        Optional<Address> address=addressRepository.findById(addressId);
