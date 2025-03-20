@@ -31,7 +31,7 @@ public class UserController {
         return userService.addAddress(addressRequest,userId);
     }
 
-    @PostMapping("/getAddress/{userId}")
+    @GetMapping("/getAddress/{userId}")
     public String getAddress(@PathVariable Long userId) {
         return userService.getAddress(userId);
     }

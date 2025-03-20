@@ -37,13 +37,14 @@ public class ProductController {
         return productService.isProductExist(productId);
     }
 
-    @GetMapping("/getFavouriteProducts/{productId}")
-    public List<Product> getFavouriteProducts(List<Long> productIds)
-    {
+    @GetMapping("/getFavouriteProducts") // Change the mapping to not include productId
+    public List<Product> getFavouriteProducts(@RequestParam List<Long> productIds) {
+        // Use @RequestParam to accept a list
         return productService.getProducts(productIds);
     }
 
-    @PostMapping("/getProductById/{productId}")
+
+    @GetMapping("/getProductById/{productId}")
     public Product getProductById(@PathVariable Long productId) {
         return productService.getProducts(List.of(productId)).get(0);
     }

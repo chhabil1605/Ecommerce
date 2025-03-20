@@ -23,7 +23,8 @@ public class RouteValidator {
 
     // Patterns for user endpoints that require specific matching
     private final List<Pattern> userEndpoints = List.of(
-            Pattern.compile("POST:/user/addAddress/\\d+") // e.g., POST:/user/addAddress/123
+            Pattern.compile("POST:/user/addAddress/\\d+"),// e.g., POST:/user/addAddress/123
+            Pattern.compile("GET:/user/getAddress/\\d+") // e.g., GET:/user/getAddress/123
     );
 
     /**
